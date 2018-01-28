@@ -15,12 +15,21 @@ public class YEO_GET_CLUE_EVENT : GameEvent
 
 public class PlayerController : CharController
 {
+    [SerializeField] private float mSusDecayRate = 2f;
+    [SerializeField] private int mDecayAmount = -1;
+
+    private float mCurrentTime = 0;
+
     //Event data
     YEO_CLOTHES_SUS_EVENT data = new YEO_CLOTHES_SUS_EVENT();
+    YEO_CLOTHES_SUS_EVENT susEvent = new YEO_CLOTHES_SUS_EVENT();
     
     public void Init()
     {
-        data.iSuspicion = 0;
+        data.iSuspicion = 30;
+        EventManager.Instance.FireEvent(data);
+
+        susEvent.iSuspicion = mDecayAmount;
 
         base.Init();
 
@@ -119,6 +128,13 @@ public class PlayerController : CharController
         float fSpeed = bRunning ? fRunSpeed : fWalkSpeed;
         vecMovement = vecInput * fSpeed;
 
+        // slowly lower suspicion
+        if (Time.time > mCurrentTime + mSusDecayRate)
+        {
+            mCurrentTime = Time.time;
+            EventManager.Instance.FireEvent(susEvent);
+        }
+
         //data.iSuspicion = 0;
 
         ////TEST
@@ -180,6 +196,8 @@ public class PlayerController : CharController
         //        EventManager.Instance.FireEvent(data);
         //    }
         //}
+
+
     }
 
     void OnTriggerEnter2D(Collider2D coll)
