@@ -2,6 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public class PlayerNoticedEvent : GameEvent
+{
+    public bool Noticed;
+
+    public PlayerNoticedEvent(bool noticed)
+    {
+        Noticed = noticed;
+    }
+}
+
 public class AIState
 {
     public enum eIdleActionType { Stand, Walk };
@@ -31,6 +41,8 @@ public class AIState
         if (collider.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             mInRangeOfPlayer = enter;
+
+            EventManager.Instance.FireEvent(new PlayerNoticedEvent(enter));
         }
     }
 
@@ -113,14 +125,6 @@ public class IdleState : AIState
         }
     }
 
-    public override void Trigger(bool enter, Collider2D collider)
-    {
-        if (collider.gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-            mInRangeOfPlayer = enter;
-        }
-    }
-
     public override void Exit()
     {
         base.Exit();
@@ -166,14 +170,6 @@ public class AlertState : AIState
         }
 
         return this;
-    }
-
-    public override void Trigger(bool enter, Collider2D collider)
-    {
-        if (collider.gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-            mInRangeOfPlayer = enter;
-        }
     }
 
     public override void Exit()

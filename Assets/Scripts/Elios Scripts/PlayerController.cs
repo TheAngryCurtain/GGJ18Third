@@ -19,6 +19,7 @@ public class PlayerController : CharController
     [SerializeField] private int mDecayAmount = -1;
 
     private float mCurrentTime = 0;
+    private bool mNoticed = false;
 
     //Event data
     YEO_CLOTHES_SUS_EVENT data = new YEO_CLOTHES_SUS_EVENT();
@@ -36,6 +37,7 @@ public class PlayerController : CharController
         InputManager.Instance.AddInputEventDelegate(OnInputUpdate, UpdateLoopType.Update);
 
         //EventManager.Instance.AddEventListener<ClothesController.YEO_CLOTHES_SWAP_EVENT>(clothesController.SetClothes);
+        EventManager.Instance.AddEventListener<PlayerNoticedEvent>(OnPlayerNoticed);
     }
 
     public void SetClothes(CharacterCreationData eventData)
@@ -43,6 +45,11 @@ public class PlayerController : CharController
         Init();
 
         base.SetClothes(eventData);
+    }
+
+    private void OnPlayerNoticed(PlayerNoticedEvent e)
+    {
+        mNoticed = e.Noticed;
     }
 
     protected virtual void OnInputUpdate(InputActionEventData iData)
@@ -129,10 +136,17 @@ public class PlayerController : CharController
         vecMovement = vecInput * fSpeed;
 
         // slowly lower suspicion
-        if (Time.time > mCurrentTime + mSusDecayRate)
+        if (!mNoticed)
+        {
+            if (Time.time > mCurrentTime + mSusDecayRate)
+            {
+                mCurrentTime = Time.time;
+                EventManager.Instance.FireEvent(susEvent);
+            }
+        }
+        else
         {
             mCurrentTime = Time.time;
-            EventManager.Instance.FireEvent(susEvent);
         }
 
         //data.iSuspicion = 0;
