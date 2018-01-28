@@ -1,0 +1,116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1567935119910104}
+  m_IsPrefabParent: 1
+--- !u!1 &1567935119910104
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4629793843546586}
+  - component: {fileID: 114896976792839676}
+  m_Layer: 0
+  m_Name: TargetManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4629793843546586
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1567935119910104}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1150.2653, y: 499.58087, z: -3.2561998}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114896976792839676
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1567935119910104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b9921d1e772e149afca76361b3300a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetCollection:
+  - InformantName: Big Bronco
+    Description: Agent, I need you to find the Frozen Monkey. You'll need to ensure
+      you pass the next letter in this package along to him. He's been seen around
+      the {insert place}. He'll be expecting you to be wearing a Red Hat, a Blue Coat,
+      and Green Pants.
+    AgentHatColor:
+      ClothingType: 0
+      Color: {r: 1, g: 0, b: 0, a: 1}
+    AgentCoatColor:
+      ClothingType: 1
+      Color: {r: 0, g: 0.006896496, b: 1, a: 1}
+    AgentPantsColor:
+      ClothingType: 2
+      Color: {r: 0, g: 1, b: 0.17241383, a: 1}
+    TargetHatColor:
+      ClothingType: 0
+      Color: {r: 0.9862069, g: 1, b: 0, a: 1}
+    TargetCoatColor:
+      ClothingType: 1
+      Color: {r: 0.94482756, g: 0, b: 1, a: 1}
+    TargetPantsColor:
+      ClothingType: 2
+      Color: {r: 0, g: 0.5034485, b: 1, a: 1}
+    TargetName: Frozen Monkey
+    HintCollection:
+    - HintText: The Frozen Monkey has been known to wear a yellow hat.
+      HintColorInfo:
+        ClothingType: 0
+        Color: {r: 0.9843138, g: 1, b: 0, a: 1}
+    - HintText: I'm sure I saw the Frozen Monkey this mornig wearing his fabulous
+        pink coat.
+      HintColorInfo:
+        ClothingType: 1
+        Color: {r: 0.9450981, g: 0, b: 1, a: 1}
+    - HintText: 'Word around here is that the Frozen Monkey really likes his blue
+        jeans. '
+      HintColorInfo:
+        ClothingType: 2
+        Color: {r: 0, g: 0.5019608, b: 1, a: 1}
+  CurrentTarget:
+    InformantName: 
+    Description: 
+    AgentHatColor:
+      ClothingType: 0
+      Color: {r: 0, g: 0, b: 0, a: 0}
+    AgentCoatColor:
+      ClothingType: 0
+      Color: {r: 0, g: 0, b: 0, a: 0}
+    AgentPantsColor:
+      ClothingType: 0
+      Color: {r: 0, g: 0, b: 0, a: 0}
+    TargetHatColor:
+      ClothingType: 0
+      Color: {r: 0, g: 0, b: 0, a: 0}
+    TargetCoatColor:
+      ClothingType: 0
+      Color: {r: 0, g: 0, b: 0, a: 0}
+    TargetPantsColor:
+      ClothingType: 0
+      Color: {r: 0, g: 0, b: 0, a: 0}
+    TargetName: 
+    HintCollection: []
